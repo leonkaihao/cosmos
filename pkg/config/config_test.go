@@ -24,6 +24,7 @@ func ExampleGetLocalConfig() {
 		fmt.Println(err)
 		return
 	}
+	fmt.Println(data["kafka"].(map[string]interface{})["brokers"].([]interface{})[0].(string))
 
 	var svc service
 	err = cfg.UnmarshalKey("service", &svc)
@@ -31,8 +32,8 @@ func ExampleGetLocalConfig() {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(
-		data["kafka"].(map[string]interface{})["brokers"].([]interface{})[0].(string),
-		svc.Trading)
-	// Output: localhost:9092 localhost:8028
+	fmt.Println(svc.Trading)
+	// Output:
+	// localhost:9092
+	// localhost:8028
 }
